@@ -10,9 +10,13 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
-// view engine setup
+// view engine setup ( handlebars )
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+
+// view engine setup ( html ) .. ejs모듈설치
+// app.engine('html', require('ejs').renderFile);
+// app.set('view engine', 'html');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -21,6 +25,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
+app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/user/users'));
