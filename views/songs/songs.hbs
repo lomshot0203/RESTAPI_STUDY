@@ -3,17 +3,32 @@
 <head>
     <title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="../lib/jquery/dist/jquery.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            console.log('{{songList}}');
+        });
+    </script>
 </head>
 <body>
-<h1>Songs</h1>
-<!--<ul :key="songsList">
-    <audio controls>
-        <label="{{songsList.title}}"></label>
-        <source src={{songsList.src}} type="audio/mp3">
-    </audio>
-</ul>-->
-    <audio controls>
-        <source src="/songs/17.mp3" type="audio/mp3">
-    </audio>
+<h1>{{title}}</h1>
+   <ul>
+        <li>
+            <audio controls="controls" controlsList="nodownload">
+                <source src="/songs/15.mp3" type="audio/mp3">
+            </audio>
+        </li>
+        <li>
+            <audio controls="controls" controlsList="nodownload">
+                <source src="/songs/17.mp3" type="audio/mp3">
+            </audio>
+        </li>
+        <li>
+            <audio controls="controls" controlsList="nodownload">
+                <source src="/songs/29.mp3" type="audio/mp3">
+            </audio>
+        </li>
+    </ul>
+<p></p>
 </body>
 </html>

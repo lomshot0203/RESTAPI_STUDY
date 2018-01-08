@@ -23,7 +23,11 @@ router.get('/artists', function(req, res, next) {
 
 /*songs*/
 router.get('/songs', function(req, res, next) {
-    res.render('./songs/songs', songsList);
+    var sendData = {
+        title : 'Songs',
+        songList : songsList
+    };
+    res.render('./songs/songs', sendData);
 });
 
 /*programming*/
