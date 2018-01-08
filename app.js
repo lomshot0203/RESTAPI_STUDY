@@ -20,10 +20,11 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+/*공용 접근*/
 app.use(express.static(path.join(__dirname, 'public')));
 /*bootstrap  적용으로 node_modules에 접근하기 위한 설정*/
-app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
-app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
+app.use('/bootstrap/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
+app.use('/bootstrap/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 
 app.use('/', index);
 app.use('/users', users);
