@@ -1,5 +1,10 @@
+/*
+* index 라우터를 관리한다.
+*
+* */
 var express = require('express');
 var router = express.Router();
+const songsList = require('../data/songs/songsList');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -16,9 +21,9 @@ router.get('/artists', function(req, res, next) {
     res.render('./artists/artists', {title:'artists'});
 });
 
-/*musics*/
-router.get('/musics', function(req, res, next) {
-    res.render('./musics/musics', {title:'musics'});
+/*songs*/
+router.get('/songs', function(req, res, next) {
+    res.render('./songs/songs', songsList);
 });
 
 /*programming*/

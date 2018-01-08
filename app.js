@@ -25,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 /*bootstrap  적용으로 node_modules에 접근하기 위한 설정*/
 app.use('/bootstrap/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 app.use('/bootstrap/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
+app.use('/songs', express.static(__dirname + '/data/songs'));
 
 app.use('/', index);
 app.use('/users', users);
