@@ -13,5 +13,30 @@
     </p>
     <hr>
 </div>
+<div id="id_20170109">
+    <h3>20170109.  node.js handlebars template</h3>
+    <p>
+        .js 파일에서 이런식으로 렌더링 한다면..
+        <pre>
+            var sendData = {
+            title : 'Songs',
+            songList : songsList
+            };
+            res.render('./songs/songs', sendData);
+        </pre>
+
+        <pre>`
+            {{#each songList}}
+                <div>
+            <label>{{title}}</label>
+            <audio controls="controls" controlsList="nodownload">
+                <source src={{src}} type="audio/mp3">
+            </audio>
+        </div>
+            {{/each}}`
+        </pre>
+    </p>
+    <hr>
+</div>
 </body>
 </html>

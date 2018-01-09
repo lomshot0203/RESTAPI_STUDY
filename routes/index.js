@@ -5,6 +5,7 @@
 var express = require('express');
 var router = express.Router();
 const songsList = require('../data/songs/songsList');
+const songsList = require('../data/s');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
