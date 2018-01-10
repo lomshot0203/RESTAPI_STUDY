@@ -22,7 +22,7 @@ exports.remove = (req, res) => {
 
 exports.create = (req, res) => {
     console.log("call song create... \n");
-    console.log(req.files);
+
     var mp3 = '';
     var mp3File = songsDir+'/audio_feedback_' + new Date().getTime() + '.mp3';
     req.on('data', function(data){

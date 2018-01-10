@@ -13,7 +13,6 @@ router.get('/', function(req, res, next) {
 
 /*songs*/
 router.post('/', function(req, res, next) {
-    console.log(req.body);
     var status = songs.create(req, res);
     if (status == 200) {
         res.render('./songs/songs', songs.list(req, res));

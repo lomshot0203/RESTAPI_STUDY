@@ -8,6 +8,9 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var songs = require('./routes/songs');
 
+const multer = require('multer');
+const upload = multer({ dest: 'data/' });
+
 
 var app = express();
 
@@ -28,6 +31,11 @@ app.use('/lib', express.static(__dirname + '/node_modules'));
 app.use('/songs', express.static(__dirname + '/data/songs'));
 
 app.use('/', index);
+
+app.post('/songs',  upload.array('file'), function (req, res, next) {
+  console.log(1);
+});
+
 app.use('/songs', songs);
 
 // catch 404 and forward to error handler

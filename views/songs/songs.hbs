@@ -22,11 +22,11 @@
                     console.log(v);
                     formData.append(k, v);
                 });
-                console.log(file[0].files[0]);
+
                 $.ajax({
                     url: '/songs',
                     type: 'POST',
-                    data: file[0].files[0],
+                    data: formData,
                     cache: false,
                     dataType: 'json',
                     processData: false,
