@@ -15,6 +15,14 @@ const songsList =
             title:'테스트3',
             src:'/songs/29.mp3'
         } ,
+        {
+            title:'테스트4',
+            src:'/songs/2.mp3'
+        } ,
+        {
+            title:'테스트5',
+            src:'/songs/22.mp3'
+        }
     ];
 
 module.exports = songsList;

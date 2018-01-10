@@ -6,28 +6,78 @@
     <script src="../lib/jquery/dist/jquery.js"></script>
     <script type="text/javascript">
         $(()=>{
-            $(":file").on("change", ()=>{
-                var file = $(":file"); /*파일객체 추출*/
+            $("#file").on('change', (e)=>{
+                console.log(e.target.files);
+                $.each(e.target.files, (k, v)=>{
+                    console.log(k);
+                    console.log(v);
+                });
             });
 
             $(":button").on("click", ()=>{
-                $.ajax
+                var file = $("#file");
+                var formData = new FormData();
+                $.each(file[0].files, (k, v)=>{
+                    console.log(k);
+                    console.log(v);
+                    formData.append(k, v);
+                });
+                console.log(file[0].files[0]);
+                $.ajax({
+                    url: '/songs',
+                    type: 'POST',
+                    data: file[0].files[0],
+                    cache: false,
+                    dataType: 'json',
+                    processData: false,
+                    contentType: 'multipart/form-data',
+                    success: function(data, textStatus, jqXHR) {
+                     console.log('data : '+ data );
+                     console.log('textStatus : '+ textStatus );
+                    }
+                });
             });
+/*
+
+            $(":button").on("click", ()=>{
+                var id = $("#usrId").val();
+                var pwd = $("#usrPwd").val();
+                var formData = new FormData();
+
+
+                $.ajax({
+                    url: '/songs',
+                    type: 'POST',
+                    data: formData,
+                    cache: false,
+                    dataType: 'json',
+                    processData: false,
+                    contentType: 'application/x-www-form-urlencoded',
+                    success: function(data, textStatus, jqXHR) {
+                        console.log('data : '+ data );
+                        console.log('textStatus : '+ textStatus );
+                    }
+                });
+            });
+*/
         });
     </script>
 </head>
 <body>
-        <h1>{{title}}</h1>
-        <input type="file" id="file" name="file"/>
-        <input type="button" id="upload" name="upload" value="업로드"/>
-        <!-- 음악파일 리스트 표시-->
-            {{#each songList}}
-                <div>
-                    <legend><h4>{{title}}</h4></legend>
-                    <audio controls="controls" controlsList="nodownload">
-                        <source src={{src}} type="audio/mp3">
-                    </audio>
-                </div>
-            {{/each}}
+    <h1>{{title}}</h1>
+    <input type="file" id="file" name="file"/>
+    <input type="button" id="upload" name="upload" value="업로드"/>
+
+    <input type="text" id="usrId" name="usrId"/>
+    <input type="text" id="usrPwd" name="usrPwd"/>
+    <!-- 음악파일 리스트 표시-->
+        {{#each songList}}
+            <div>
+                <legend><h4>{{title}}</h4></legend>
+                <audio controls="controls" controlsList="nodownload">
+                    <source src={{src}} type="audio/mp3">
+                </audio>
+            </div>
+        {{/each}}
 </body>
 </html>
