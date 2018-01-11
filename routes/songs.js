@@ -1,23 +1,9 @@
-const express = require('express');
-const router = express.Router();
-const songs = require('../controller/songs.controller');
+var express = require('express');
+var router = express.Router();
+var song_controller = require('../controller/songs.controller');
 
 /*songs*/
-router.get('/:id', function(req, res, next) {
-    res.render('./songs/songs', songs.get(req, res));
-});
-
-router.get('/', function(req, res, next) {
-    res.render('./songs/songs', songs.list(req, res));
-});
-
-/*songs*/
-router.post('/', function(req, res, next) {
-    var status = songs.create(req, res);
-    if (status == 200) {
-        res.render('./songs/songs', songs.list(req, res));
-    }
-    res.send(500, "fuck");
-});
+router.get('/', song_controller.song_list);
+router.post('/upload', song_controller.song_create_post);
 
 module.exports = router;

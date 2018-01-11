@@ -20,22 +20,25 @@
                 $.each(file[0].files, (k, v)=>{
                     console.log(k);
                     console.log(v);
-                    formData.append(k, v);
+                    formData.append('file', v);
                 });
-
-                $.ajax({
-                    url: '/songs',
-                    type: 'POST',
+console.log(formData);
+                var options = {
+                    url: '/songs/upload',
+                    type: 'post',
                     data: formData,
                     cache: false,
                     dataType: 'json',
                     processData: false,
-                    contentType: 'multipart/form-data',
+                    contentType: false,
                     success: function(data, textStatus, jqXHR) {
-                     console.log('data : '+ data );
-                     console.log('textStatus : '+ textStatus );
+                        console.log('data : '+ data );
+                        console.log('textStatus : '+ textStatus );
+                        console.log('jqXHR : '+ jqXHR );
                     }
-                });
+                };
+
+                $.ajax(options);
             });
 /*
 
@@ -67,9 +70,6 @@
     <h1>{{title}}</h1>
     <input type="file" id="file" name="file"/>
     <input type="button" id="upload" name="upload" value="업로드"/>
-
-    <input type="text" id="usrId" name="usrId"/>
-    <input type="text" id="usrPwd" name="usrPwd"/>
     <!-- 음악파일 리스트 표시-->
         {{#each songList}}
             <div>

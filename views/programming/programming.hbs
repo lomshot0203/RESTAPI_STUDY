@@ -3,28 +3,32 @@
 <head>
     <title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <h1>{{title}}</h1>
+<div class="container">
+</div>
 <div id="id_20170108">
-    <h3>20170108.  html5 audio tag</h3>
-    <p>
-        video, audio의 download기능을 안보이게 하고 싶다면 <cod>controlsList="nodownload"</cod> 속성을 지정한다.
-    </p>
-    <hr>
+    <div class="row">
+        <h3>20170108.  html5 audio tag</h3>
+        <pre>
+            video, audio의 download기능을 안보이게 하고 싶다면 <cod>controlsList="nodownload"</cod> 속성을 지정한다.
+        </pre>
+    </div>
 </div>
 <div id="id_20170109_1">
     <h3>20170109.  node.js handlebars template</h3>
-        .js 파일에서 이런식으로 렌더링 한다면..
         <pre>
+            .js 파일에서 이런식으로 렌더링 한다면..
             var sendData = {
             title : 'Songs',
             songList : songsList ( json 배열)
             };
             res.render('./songs/songs', sendData);
         </pre>
-    <hr>
 </div>
+<hr>
 <div id="id_20170109_2">
     <h3>20170109.  node.js 모듈 수동설치 후 package.json 업데이트</h3>
         <pre>
@@ -32,15 +36,43 @@
             npm-check-updates -u
             npm install
         </pre>
-    <hr>
 </div>
+<hr>
 <div id="id_20170110_1">
     <h3>20170110.  node.js ajax로 음악파일 업로드</h3>
     <pre>
         <img src="/images/ajax_formdata_send01.PNG"/>
-        이런식으로 했더니 서버쪽에서 받지를 못한다.. 빌어먹을
+        이런식으로 했더니 서버쪽에서 받지를 못한다..
     </pre>
-    <hr>
+</div>
+<hr>
+<div id="id_20170111_1">
+    <h3>20170111.  node.js ajax로 음악파일 업로드</h3>
+        <div>
+            <img src="/images/ajax_formdata_send02.PNG"/>
+            <img src="/images/ajax_formdata_send03.PNG"/>
+            <img src="/images/ajax_formdata_send04.PNG"/>
+            <pre>
+                1. ajax에서 파일 업로드시 변경이벤트에서 e.target.files로 받을 때는 변경된 바로 그 파일객체 하나가 넘어온다.
+                    var file = $("#file");로 받으면 배열로 넘어오고 거기에 또 files라는 배열이 있어서 파일리스트를
+                    추출하는 방법의 차이가 있고 'var formData = new FormData();' 이렇게 폼데이터로 감싸주지 않으면
+                    파일의 내용물이 넘어가지 않는다.
+                2. multer가 미들웨어라고 해도 라우더 파일이든 app.js든 콘트롤러 파일이든 상관없이 불러서 쓸 수가 있다.
+                   2-1. 라우터 쪽에서 쓰면 컨트롤러로 req를 넘겼을 때 req.file로 접근할 수가 없었다.
+                   2-2. router.post('/upload', upload.single('file'), song_controller.song_create_post);
+                        이런식으로 했더니 500에러가 났다. 도대체 원인을 찾을 수가 multer.diskStorage를 따로 호출하는
+                        방식으로 적용했더니 업로드는 잘된다.
+            </pre>
+        </div>
+</div>
+<br/>
+<hr>
+<div id="id_20170111_2">
+    <h3>20170111.  node.js router와 controller 분할</h3>
+    <img src="/images/router_controller01.PNG"/>
+    라우터
+    <img src="/images/router_controller02.PNG"/>
+    컨트롤러
 </div>
 </body>
 </html>

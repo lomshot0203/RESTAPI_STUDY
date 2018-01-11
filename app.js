@@ -8,10 +8,6 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var songs = require('./routes/songs');
 
-const multer = require('multer');
-const upload = multer({ dest: 'data/' });
-
-
 var app = express();
 
 // view engine setup
@@ -25,17 +21,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 /*공용 접근*/
+/*node_modules 접근설정*/
+/*data 접근설정*/
 app.use(express.static(path.join(__dirname, 'public')));
-/*bootstrap  적용으로 node_modules에 접근하기 위한 설정*/
 app.use('/lib', express.static(__dirname + '/node_modules'));
-app.use('/songs', express.static(__dirname + '/data/songs'));
+app.use('/data', express.static(__dirname + '/data'));
 
+/*라우팅*/
 app.use('/', index);
-
-app.post('/songs',  upload.array('file'), function (req, res, next) {
-  console.log(1);
-});
-
 app.use('/songs', songs);
 
 // catch 404 and forward to error handler
