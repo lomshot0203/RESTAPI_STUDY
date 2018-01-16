@@ -74,5 +74,17 @@
     <img src="/images/router_controller02.PNG"/>
     컨트롤러
 </div>
+<hr>
+<div id="id_20170116">
+    <h3>20170116.  client에서 서버로 ajax 통신시...</h3>
+    <pre>
+        new FormData() 로 할 때는 굳이 그럴 필요가 없는데 이것은 html5부터 적용되는 거라서..
+        var data = {};
+        data.msg = msg;
+        와 같이 데이터를 생성하여 전송하는 경우에 JSON통신하고 싶다면 JSON.stringify(data) 해서 JSON화 시켜서
+        전송해야된다. 이 때 ajax의 contentType옵션은 'application/json'으로 해줘야한다.
+        파일 전송할 때는 멀티파트로 해서 전송해도 안되서 false로 설정하니 잘 갔었는데.. 이상하다.
+    </pre>
+</div>
 </body>
 </html>
