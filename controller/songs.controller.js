@@ -30,12 +30,12 @@ exports.song_create_post = (req, res) => {
             console.log(err);
         }
         var orignalNm = req.file.originalname;
-        orignalNm.replace();
         var newSong = {
           title : req.file.originalname ,
           src : '/data/songs/'+ req.file.originalname
         };
-        songsList.push(newSong);
+        sendData.songList.push(newSong);
+        console.log(songsList);
         res.render('./songs/songs', sendData);
     });
 };
